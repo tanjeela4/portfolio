@@ -189,7 +189,7 @@ const ProfessionalExperience = () => {
   const [mobileLineHeight, setMobileLineHeight] = useState(0);
   const mobileTimelineRef = useRef<HTMLDivElement>(null);
   const mobileDotRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [mobileDotPositions] = useState<number[]>([]);
+  const [mobileDotPositions, setMobileDotPositions] = useState<number[]>([]);
 
   // ── Desktop: dot positions ────────────────────────────────────────────────
   useEffect(() => {
@@ -218,18 +218,11 @@ const ProfessionalExperience = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
-
       const rect = containerRef.current.getBoundingClientRect();
-      const containerTop = rect.top;
-      const containerHeight = rect.height;
-      const viewportHeight = window.innerHeight;
-
-      const scrolled = viewportHeight * 0.5 - containerTop;
-      const progress = Math.min(Math.max(scrolled / containerHeight, 0), 1);
-
+      const scrolled = window.innerHeight * 0.5 - rect.top;
+      const progress = Math.min(Math.max(scrolled / rect.height, 0), 1);
       setLineHeight(progress * 100);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
