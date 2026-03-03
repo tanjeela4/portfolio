@@ -189,7 +189,7 @@ const ProfessionalExperience = () => {
   const [mobileLineHeight, setMobileLineHeight] = useState(0);
   const mobileTimelineRef = useRef<HTMLDivElement>(null);
   const mobileDotRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [mobileDotPositions, setMobileDotPositions] = useState<number[]>([]);
+  const [mobileDotPositions] = useState<number[]>([]);
 
   // ── Desktop: dot positions ────────────────────────────────────────────────
   useEffect(() => {
